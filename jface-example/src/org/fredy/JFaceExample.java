@@ -5,6 +5,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextPresentation;
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -23,7 +24,9 @@ import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -34,6 +37,7 @@ public class JFaceExample {
         new TableViewerExample();
         new TreeViewerExample();
         new TextViewerExample();
+        new ComboViewerExample();
     }
 
     private static class ListViewExample {
@@ -67,6 +71,7 @@ public class JFaceExample {
                     System.out.println("Double Clicked: " + selection.getFirstElement());
                 }
             });
+            
             shell.open();
             while (!shell.isDisposed()) {
                 if (!display.readAndDispatch())
@@ -246,6 +251,69 @@ public class JFaceExample {
             style.addStyleRange(new StyleRange(37, 16, red, null));
             textViewer.changeTextPresentation(style, true);
 
+            shell.open();
+            while (!shell.isDisposed()) {
+                if (!display.readAndDispatch())
+                    display.sleep();
+            }
+            display.dispose();
+        }
+    }
+    
+    public static class ComboViewerExample {
+        public ComboViewerExample() {
+            Display display = new Display();
+            Shell shell = new Shell(display);
+            shell.setText("Combo Viewer Example");
+
+            GridLayout layout = new GridLayout(2, false);
+            shell.setLayout(layout);
+
+            Label label = new Label(shell, SWT.NONE);
+            label.setText("Select a person:");
+            final ComboViewer viewer = new ComboViewer(shell, SWT.READ_ONLY);
+
+            // the ArrayContentProvider object does not store any state,
+            // therefore you can re-use instances
+
+            viewer.setContentProvider(ArrayContentProvider.getInstance());
+            viewer.setLabelProvider(new LabelProvider() {
+                @Override
+                public String getText(Object element) {
+                    if (element instanceof Person) {
+                        Person person = (Person) element;
+                        return person.firstName;
+                    }
+                    return super.getText(element);
+                }
+            });
+
+            Person[] persons = new Person[] {
+                new Person("John", "Doe", 25),
+                new Person("Jane", "Doe", 28),
+                new Person("Foo", "Bar", 32)
+            };
+
+            // set the input of the Viewer,
+            // this input is send to the content provider
+
+            viewer.setInput(persons);
+
+            // react to the selection change of the viewer
+            // note that the viewer returns the actual object
+            viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+                @Override
+                public void selectionChanged(SelectionChangedEvent event) {
+                    IStructuredSelection selection = (IStructuredSelection) event
+                        .getSelection();
+                    if (selection.size() > 0) {
+                        System.out.println(((Person) selection.getFirstElement())
+                            .lastName);
+                    }
+                }
+            });
+
+            shell.pack();
             shell.open();
             while (!shell.isDisposed()) {
                 if (!display.readAndDispatch())
