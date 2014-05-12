@@ -18,13 +18,27 @@
          <action
                label="&amp;Sample Action"
                icon="icons/sample.gif"
-               class="org.fredy.eclipsepluginexample.SampleAction"
+               class="org.fredy.eclipsepluginexample.actions.SampleAction"
                tooltip="Hello, Eclipse world"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="eclipsepluginexample.actions.SampleAction">
          </action>
       </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="eclipse-plugin-example"
+            name="Sample Category">
+      </category>
+      <view
+            category="eclipse-plugin-example"
+            class="org.fredy.eclipsepluginexample.views.SampleView"
+            icon="icons/sample.gif"
+            id="eclipsepluginexample.views.SampleView"
+            name="Sample View">
+      </view>
    </extension>
 
 </plugin>

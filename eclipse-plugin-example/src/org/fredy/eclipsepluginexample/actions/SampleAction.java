@@ -1,4 +1,4 @@
-package org.fredy.eclipsepluginexample;
+package org.fredy.eclipsepluginexample.actions;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
