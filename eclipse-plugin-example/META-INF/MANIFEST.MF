@@ -5,6 +5,7 @@ Bundle-SymbolicName: eclipse-plugin-example;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.fredy.eclipsepluginexample.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.ui.views;bundle-version="3.6.100"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy

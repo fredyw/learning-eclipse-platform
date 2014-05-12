@@ -9,6 +9,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.*;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.SWT;
+import org.fredy.eclipsepluginexample.adapters.Sample;
 
 /**
  * This sample class demonstrates how to plug-in a new workbench view. The view
@@ -45,7 +46,11 @@ public class SampleView extends ViewPart {
         }
 
         public Object[] getElements(Object parent) {
-            return new String[] { "One", "Two", "Three" };
+            return new Sample[] {
+                new Sample("One", "Sample 1"),
+                new Sample("Two", "Sample 2"),
+                new Sample("Three", "Sample 3")
+            };
         }
     }
 
@@ -83,6 +88,7 @@ public class SampleView extends ViewPart {
         viewer.setLabelProvider(new ViewLabelProvider());
         viewer.setSorter(new NameSorter());
         viewer.setInput(getViewSite());
+        getSite().setSelectionProvider(viewer);
         makeActions();
         hookContextMenu();
         hookDoubleClickAction();
