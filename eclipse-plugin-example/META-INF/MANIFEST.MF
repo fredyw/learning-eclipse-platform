@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Eclipse-plugin-example
-Bundle-SymbolicName: eclipse-plugin-example;singleton:=true
+Bundle-Name: Eclipse Plugin Example
+Bundle-SymbolicName: org.fredy.eclipsepluginexample;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.fredy.eclipsepluginexample.Activator
 Require-Bundle: org.eclipse.ui,
