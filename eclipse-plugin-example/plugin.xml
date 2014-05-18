@@ -70,6 +70,14 @@
             </command>
          </toolbar>
       </menuContribution>
+      <menuContribution
+            locationURI="menu:help?after=additions">
+         <command
+               commandId="org.fredy.eclipsepluginexample.ui.commands.sampleCommand"
+               label="Say Hello"
+               style="push">
+         </command>
+      </menuContribution>
    </extension>
 
 </plugin>
