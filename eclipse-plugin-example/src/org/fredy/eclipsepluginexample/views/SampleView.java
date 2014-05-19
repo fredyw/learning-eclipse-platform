@@ -1,14 +1,23 @@
 package org.fredy.eclipsepluginexample.views;
 
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.*;
-import org.eclipse.jface.viewers.*;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.jface.action.*;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.*;
-import org.eclipse.swt.widgets.Menu;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.IHandlerService;
+import org.eclipse.ui.part.ViewPart;
 import org.fredy.eclipsepluginexample.adapters.Sample;
 
 /**
@@ -26,10 +35,9 @@ import org.fredy.eclipsepluginexample.adapters.Sample;
  * <p>
  */
 public class SampleView extends ViewPart {
+    public static final String ID = "org.fredy.eclipsepluginexample.ui.views.sampleView";
+    public static final String NAME = "Sample View";
     private TableViewer viewer;
-    private Action action1;
-    private Action action2;
-    private Action doubleClickAction;
 
     /*
      * The content provider class is responsible for providing objects to the
@@ -96,94 +104,39 @@ public class SampleView extends ViewPart {
         viewer.setSorter(new NameSorter());
         viewer.setInput(getViewSite());
         getSite().setSelectionProvider(viewer);
-        makeActions();
+        viewer.addDoubleClickListener(new IDoubleClickListener() {
+            @Override
+            public void doubleClick(DoubleClickEvent event) {
+                IHandlerService handlerService = (IHandlerService) getSite()
+                    .getService(IHandlerService.class);
+                try {
+                    handlerService.executeCommand(
+                        "org.fredy.eclipsepluginexample.ui.commands.doubleClickCommand", null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                
+                //==========================================================
+                // This is another way to do it without using a handler.
+                //==========================================================
+                // Viewer viewer = event.getViewer();
+                // Shell shell = viewer.getControl().getShell();
+                // ISelection selection = viewer.getSelection();
+                // Object obj = ((IStructuredSelection) selection).getFirstElement();
+                // MessageDialog.openInformation(
+                //     shell,
+                //     "Sample View",
+                //     "Double-click detected on " + obj.toString());
+            }
+        });
         hookContextMenu();
-        hookDoubleClickAction();
-        contributeToActionBars();
     }
 
     private void hookContextMenu() {
         MenuManager menuMgr = new MenuManager("#PopupMenu");
-        menuMgr.setRemoveAllWhenShown(true);
-        menuMgr.addMenuListener(new IMenuListener() {
-            @Override
-            public void menuAboutToShow(IMenuManager manager) {
-                SampleView.this.fillContextMenu(manager);
-            }
-        });
         Menu menu = menuMgr.createContextMenu(viewer.getControl());
         viewer.getControl().setMenu(menu);
         getSite().registerContextMenu(menuMgr, viewer);
-    }
-
-    private void contributeToActionBars() {
-        IActionBars bars = getViewSite().getActionBars();
-        fillLocalPullDown(bars.getMenuManager());
-        fillLocalToolBar(bars.getToolBarManager());
-    }
-
-    private void fillLocalPullDown(IMenuManager manager) {
-        manager.add(action1);
-        manager.add(new Separator());
-        manager.add(action2);
-    }
-
-    private void fillContextMenu(IMenuManager manager) {
-        manager.add(action1);
-        manager.add(action2);
-        // Other plug-ins can contribute there actions here
-        manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
-    }
-
-    private void fillLocalToolBar(IToolBarManager manager) {
-        manager.add(action1);
-        manager.add(action2);
-    }
-
-    private void makeActions() {
-        action1 = new Action() {
-            @Override
-            public void run() {
-                showMessage("Action 1 executed");
-            }
-        };
-        action1.setText("Action 1");
-        action1.setToolTipText("Action 1 tooltip");
-        action1.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-            .getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
-
-        action2 = new Action() {
-            @Override
-            public void run() {
-                showMessage("Action 2 executed");
-            }
-        };
-        action2.setText("Action 2");
-        action2.setToolTipText("Action 2 tooltip");
-        action2.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-            .getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
-        doubleClickAction = new Action() {
-            @Override
-            public void run() {
-                ISelection selection = viewer.getSelection();
-                Object obj = ((IStructuredSelection) selection).getFirstElement();
-                showMessage("Double-click detected on " + obj.toString());
-            }
-        };
-    }
-
-    private void hookDoubleClickAction() {
-        viewer.addDoubleClickListener(new IDoubleClickListener() {
-            @Override
-            public void doubleClick(DoubleClickEvent event) {
-                doubleClickAction.run();
-            }
-        });
-    }
-
-    private void showMessage(String message) {
-        MessageDialog.openInformation(viewer.getControl().getShell(), "Sample View",
-            message);
     }
 
     /**

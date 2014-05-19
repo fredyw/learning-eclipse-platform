@@ -31,18 +31,45 @@
       <command
             description="Sample Command"
             id="org.fredy.eclipsepluginexample.ui.commands.sampleCommand"
-            name="Sample Command">
+            name="Command 1">
       </command>
       <category
             id="org.fredy.eclipsepluginexample.ui.commands.sampleCategory"
             name="Sample Category">
       </category>
+      <command
+            description="Command 1"
+            id="org.fredy.eclipsepluginexample.ui.commands.command1"
+            name="Command 1">
+      </command>
+      <command
+            description="Command 2"
+            id="org.fredy.eclipsepluginexample.ui.commands.command2"
+            name="Command 2">
+      </command>
+      <command
+            description="Double Click Command"
+            id="org.fredy.eclipsepluginexample.ui.commands.doubleClickCommand"
+            name="Double Click Command">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="org.fredy.eclipsepluginexample.handlers.SampleHandler"
             commandId="org.fredy.eclipsepluginexample.ui.commands.sampleCommand">
+      </handler>
+      <handler
+            class="org.fredy.eclipsepluginexample.handlers.Handler1"
+            commandId="org.fredy.eclipsepluginexample.ui.commands.command1">
+      </handler>
+      <handler
+            class="org.fredy.eclipsepluginexample.handlers.Handler2"
+            commandId="org.fredy.eclipsepluginexample.ui.commands.command2">
+      </handler>
+      <handler
+            class="org.fredy.eclipsepluginexample.handlers.DoubleClickHandler"
+            commandId="org.fredy.eclipsepluginexample.ui.commands.doubleClickCommand">
       </handler>
    </extension>
    <extension
@@ -76,6 +103,20 @@
                commandId="org.fredy.eclipsepluginexample.ui.commands.sampleCommand"
                label="Say Hello"
                style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="org.fredy.eclipsepluginexample.ui.commands.command1"
+               style="push"
+               tooltip="Command 1 Tooltip">
+         </command>
+         <command
+               commandId="org.fredy.eclipsepluginexample.ui.commands.command2"
+               style="push"
+               tooltip="Command 1 Tooltip">
          </command>
       </menuContribution>
    </extension>
