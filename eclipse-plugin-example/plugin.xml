@@ -129,5 +129,13 @@
             sequence="M1+9">
       </key>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.fredy.eclipsepluginexample.pages.SamplePreferencePage"
+            id="org.fredy.eclipsepluginexample.ui.preferencePages.samplePreference"
+            name="Sample Preference">
+      </page>
+   </extension>
 
 </plugin>

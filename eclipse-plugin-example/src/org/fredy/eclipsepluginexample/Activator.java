@@ -8,9 +8,8 @@ import org.osgi.framework.BundleContext;
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
-
 	// The plug-in ID
-	public static final String PLUGIN_ID = "eclipse-plugin-example"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.fredy.eclipsepluginexample"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -28,6 +27,10 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		
+		int launchCount = getPreferenceStore().getInt("launchCount");
+        System.out.println("I have been launched " + launchCount + " times");
+        getPreferenceStore().setValue("launchCount", launchCount+1);
 	}
 
 	/*

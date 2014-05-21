@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Display;
@@ -17,11 +18,15 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.progress.IProgressConstants2;
+import org.fredy.eclipsepluginexample.Activator;
+import org.osgi.service.prefs.Preferences;
 
 public class SampleHandler extends AbstractHandler {
     @Override
     public Object execute(final ExecutionEvent event) throws ExecutionException {
         final IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+        Preferences preferences = InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID);
+        final String message = preferences.get("message", "Hello, Eclipse World");
         Job job = new Job("About to say hello") {
             @Override
             protected IStatus run(IProgressMonitor monitor) {
@@ -41,7 +46,7 @@ public class SampleHandler extends AbstractHandler {
                         MessageDialog.openInformation(
                             window.getShell(),
                             "Eclipse Plugin Example",
-                            "Hello, Eclipse world");
+                            message);
                     }
                 });
                 return Status.OK_STATUS;
