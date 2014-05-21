@@ -26,7 +26,7 @@ public class SampleHandler extends AbstractHandler {
     public Object execute(final ExecutionEvent event) throws ExecutionException {
         final IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
         Preferences preferences = InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID);
-        final String message = preferences.get("message", "Hello, Eclipse World");
+        final String message = preferences.get("message", "");
         Job job = new Job("About to say hello") {
             @Override
             protected IStatus run(IProgressMonitor monitor) {

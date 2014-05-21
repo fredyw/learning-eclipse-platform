@@ -31,6 +31,11 @@ public class Activator extends AbstractUIPlugin {
 		int launchCount = getPreferenceStore().getInt("launchCount");
         System.out.println("I have been launched " + launchCount + " times");
         getPreferenceStore().setValue("launchCount", launchCount+1);
+        
+        String message = getPreferenceStore().getString("message");
+        if (message.isEmpty()) {
+            getPreferenceStore().setValue("message", "Hello, Eclipse World");
+        }
 	}
 
 	/*
