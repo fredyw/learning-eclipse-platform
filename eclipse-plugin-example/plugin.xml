@@ -112,11 +112,35 @@
                commandId="org.fredy.eclipsepluginexample.ui.commands.command1"
                style="push"
                tooltip="Command 1 Tooltip">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false">
+                     <adapt
+                           type="org.fredy.eclipsepluginexample.adapters.Sample">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
          </command>
          <command
                commandId="org.fredy.eclipsepluginexample.ui.commands.command2"
                style="push"
                tooltip="Command 1 Tooltip">
+               <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false">
+                     <adapt
+                           type="org.fredy.eclipsepluginexample.adapters.Sample">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
@@ -152,6 +176,16 @@
             id="org.fredy.eclipseexampleplugin.ui.keywords"
             label="counter message">
       </keyword>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.fredy.eclipsepluginexample.editors.SampleEditor"
+            default="false"
+            extensions="sample"
+            id="org.fredy.eclipsepluginexample.ui.editors.sampleEditor"
+            name="Sample Editor">
+      </editor>
    </extension>
 
 </plugin>
