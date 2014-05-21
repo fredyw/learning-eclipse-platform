@@ -132,10 +132,26 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
+            category="org.fredy.eclipsepluginexample.ui.preferencePages.myPreferences"
             class="org.fredy.eclipsepluginexample.pages.SamplePreferencePage"
             id="org.fredy.eclipsepluginexample.ui.preferencePages.samplePreference"
             name="Sample Preference">
+         <keywordReference
+               id="org.fredy.eclipseexampleplugin.ui.keywords">
+         </keywordReference>
       </page>
+      <page
+            class="org.fredy.eclipsepluginexample.pages.MyPreferencesPage"
+            id="org.fredy.eclipsepluginexample.ui.preferencePages.myPreferences"
+            name="My Preferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.keywords">
+      <keyword
+            id="org.fredy.eclipseexampleplugin.ui.keywords"
+            label="counter message">
+      </keyword>
    </extension>
 
 </plugin>

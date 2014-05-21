@@ -1,5 +1,7 @@
 package org.fredy.eclipsepluginexample;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -28,10 +30,13 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		
-		int launchCount = getPreferenceStore().getInt("launchCount");
-        System.out.println("I have been launched " + launchCount + " times");
-        getPreferenceStore().setValue("launchCount", launchCount+1);
-        
+		// Use IClipsePreferences (this is preferable)
+		IEclipsePreferences prefs = InstanceScope.INSTANCE.getNode(PLUGIN_ID);
+		int launchCount = prefs.getInt("launchCount", 0);
+		prefs.putInt("launchCount", launchCount + 1);
+		System.out.println("I have been launched " + launchCount + " times");
+		
+		// Use IPrefrerenceStore
         String message = getPreferenceStore().getString("message");
         if (message.isEmpty()) {
             getPreferenceStore().setValue("message", "Hello, Eclipse World");
