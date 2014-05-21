@@ -142,6 +142,24 @@
                </with>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.fredy.eclipsepluginexample.ui.commands.sampleCommand"
+               label="Sample Command"
+               style="push"
+               tooltip="Sample Command Tooltip">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false">
+                     <adapt
+                           type="org.eclipse.core.resources.IResource">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
