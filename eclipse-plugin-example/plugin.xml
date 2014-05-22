@@ -107,7 +107,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.ui.popup.any">
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <command
                commandId="org.fredy.eclipsepluginexample.ui.commands.command1"
                style="push"
@@ -142,24 +142,42 @@
                </with>
             </visibleWhen>
          </command>
-         <command
-               commandId="org.fredy.eclipsepluginexample.ui.commands.sampleCommand"
-               label="Sample Command"
-               style="push"
-               tooltip="Sample Command Tooltip">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <iterate
-                        ifEmpty="false">
+         <menu
+               label="Sample Command">
+            <command
+                  commandId="org.fredy.eclipsepluginexample.ui.commands.sampleCommand"
+                  label="Resource"
+                  style="push"
+                  tooltip="Sample Command Tooltip">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <iterate
+                           ifEmpty="false">
+                        <adapt
+                              type="org.eclipse.core.resources.IResource">
+                        </adapt>
+                     </iterate>
+                  </with>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.fredy.eclipsepluginexample.ui.commands.sampleCommand"
+                  label="Editor"
+                  style="push"
+                  tooltip="Sample Command Tooltip">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="activeEditor">
                      <adapt
-                           type="org.eclipse.core.resources.IResource">
+                           type="org.eclipse.ui.texteditor.ITextEditor">
                      </adapt>
-                  </iterate>
-               </with>
-            </visibleWhen>
-         </command>
+                  </with>
+               </visibleWhen>
+            </command>
+         </menu>
       </menuContribution>
    </extension>
    <extension
