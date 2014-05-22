@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_PWWowOHwEeO2ucw7PiovoA" elementId="org.eclipse.e4.ide.application" bindingContexts="_PWXP2OHwEeO2ucw7PiovoA">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_PWXP0OHwEeO2ucw7PiovoA" label="org.fredy.e4example" width="500" height="400">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_PWX29uHwEeO2ucw7PiovoA">
+      <children xsi:type="advanced:Perspective" xmi:id="_PWX29-HwEeO2ucw7PiovoA">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_PWX2-OHwEeO2ucw7PiovoA">
+          <children xsi:type="basic:PartStack" xmi:id="_PWYd8OHwEeO2ucw7PiovoA">
+            <children xsi:type="basic:Part" xmi:id="_PWYd8eHwEeO2ucw7PiovoA" contributionURI="bundleclass://org.fredy.e4example/org.fredy.e4example.parts.SamplePart" label="Sample Part"/>
+          </children>
+        </children>
+      </children>
+    </children>
+    <mainMenu xmi:id="_PWX27-HwEeO2ucw7PiovoA" elementId="menu:org.eclipse.ui.main.menu">
+      <children xsi:type="menu:Menu" xmi:id="_PWX28OHwEeO2ucw7PiovoA" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_PWX28eHwEeO2ucw7PiovoA" label="Open" iconURI="platform:/plugin/org.fredy.e4example/icons/sample.gif" command="_PWX25uHwEeO2ucw7PiovoA"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_PWX28uHwEeO2ucw7PiovoA" label="Save" iconURI="platform:/plugin/org.fredy.e4example/icons/save_edit.gif" command="_PWX26eHwEeO2ucw7PiovoA"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_PWX28-HwEeO2ucw7PiovoA" label="Quit" command="_PWX24uHwEeO2ucw7PiovoA"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_PWX29OHwEeO2ucw7PiovoA" label="Help">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_PWX29eHwEeO2ucw7PiovoA" label="About" command="_PWX27OHwEeO2ucw7PiovoA"/>
+      </children>
+    </mainMenu>
+    <trimBars xmi:id="_PWYd8uHwEeO2ucw7PiovoA">
+      <children xsi:type="menu:ToolBar" xmi:id="_PWYd8-HwEeO2ucw7PiovoA" elementId="toolbar:org.eclipse.ui.main.toolbar">
+        <children xsi:type="menu:HandledToolItem" xmi:id="_PWYd9OHwEeO2ucw7PiovoA" iconURI="platform:/plugin/org.fredy.e4example/icons/sample.gif" command="_PWX25uHwEeO2ucw7PiovoA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_PWYd9eHwEeO2ucw7PiovoA" iconURI="platform:/plugin/org.fredy.e4example/icons/save_edit.gif" command="_PWX26eHwEeO2ucw7PiovoA"/>
+      </children>
+    </trimBars>
+  </children>
+  <handlers xmi:id="_PWX24-HwEeO2ucw7PiovoA" elementId="org.fredy.e4example.handler.quitCommand" contributionURI="bundleclass://org.fredy.e4example/org.fredy.e4example.handlers.QuitHandler" command="_PWX24uHwEeO2ucw7PiovoA"/>
+  <handlers xmi:id="_PWX25-HwEeO2ucw7PiovoA" elementId="org.fredy.e4example.handler.openCommand" contributionURI="bundleclass://org.fredy.e4example/org.fredy.e4example.handlers.OpenHandler" command="_PWX25uHwEeO2ucw7PiovoA"/>
+  <handlers xmi:id="_PWX26uHwEeO2ucw7PiovoA" elementId="org.fredy.e4example.handler.saveCommand" contributionURI="bundleclass://org.fredy.e4example/org.fredy.e4example.handlers.SaveHandler" command="_PWX26eHwEeO2ucw7PiovoA"/>
+  <handlers xmi:id="_PWX27eHwEeO2ucw7PiovoA" elementId="org.fredy.e4example.handler.aboutCommand" contributionURI="bundleclass://org.fredy.e4example/org.fredy.e4example.handlers.AboutHandler" command="_PWX27OHwEeO2ucw7PiovoA"/>
+  <bindingTables xmi:id="_PWX25OHwEeO2ucw7PiovoA" bindingContext="_PWXP2OHwEeO2ucw7PiovoA">
+    <bindings xmi:id="_PWX25eHwEeO2ucw7PiovoA" keySequence="M1+Q" command="_PWX24uHwEeO2ucw7PiovoA"/>
+    <bindings xmi:id="_PWX26OHwEeO2ucw7PiovoA" keySequence="M1+O" command="_PWX25uHwEeO2ucw7PiovoA"/>
+    <bindings xmi:id="_PWX26-HwEeO2ucw7PiovoA" keySequence="M1+S" command="_PWX26eHwEeO2ucw7PiovoA"/>
+    <bindings xmi:id="_PWX27uHwEeO2ucw7PiovoA" keySequence="M1+A" command="_PWX27OHwEeO2ucw7PiovoA"/>
+  </bindingTables>
+  <rootContext xmi:id="_PWXP2OHwEeO2ucw7PiovoA" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
+    <children xmi:id="_PWX24OHwEeO2ucw7PiovoA" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
+    <children xmi:id="_PWX24eHwEeO2ucw7PiovoA" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
+  </rootContext>
+  <commands xmi:id="_PWX24uHwEeO2ucw7PiovoA" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
+  <commands xmi:id="_PWX25uHwEeO2ucw7PiovoA" elementId="org.fredy.e4example.open" commandName="openCommand"/>
+  <commands xmi:id="_PWX26eHwEeO2ucw7PiovoA" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
+  <commands xmi:id="_PWX27OHwEeO2ucw7PiovoA" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <addons xmi:id="_PWXP0eHwEeO2ucw7PiovoA" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_PWXP0uHwEeO2ucw7PiovoA" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_PWXP0-HwEeO2ucw7PiovoA" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_PWXP1OHwEeO2ucw7PiovoA" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_PWXP1eHwEeO2ucw7PiovoA" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+  <addons xmi:id="_PWXP1uHwEeO2ucw7PiovoA" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_PWXP1-HwEeO2ucw7PiovoA" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+</application:Application>
