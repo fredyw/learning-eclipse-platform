@@ -52,6 +52,16 @@
             id="org.fredy.eclipsepluginexample.ui.commands.doubleClickCommand"
             name="Double Click Command">
       </command>
+      <command
+            description="Add Sample Nature"
+            id="org.fredy.eclipsepluginexample.ui.commands.addSampleNatureCommand"
+            name="Add Sample Nature">
+      </command>
+      <command
+            description="Remove Sample Nature"
+            id="org.fredy.eclipsepluginexample.ui.commands.removeSampleNatureCommand"
+            name="Remove Sample Nature">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -70,6 +80,14 @@
       <handler
             class="org.fredy.eclipsepluginexample.handlers.DoubleClickHandler"
             commandId="org.fredy.eclipsepluginexample.ui.commands.doubleClickCommand">
+      </handler>
+      <handler
+            class="org.fredy.eclipsepluginexample.handlers.AddSampleNatureHandler"
+            commandId="org.fredy.eclipsepluginexample.ui.commands.addSampleNatureCommand">
+      </handler>
+      <handler
+            class="org.fredy.eclipsepluginexample.handlers.RemoveSampleNatureHandler"
+            commandId="org.fredy.eclipsepluginexample.ui.commands.removeSampleNatureCommand">
       </handler>
    </extension>
    <extension
@@ -179,6 +197,20 @@
             </command>
          </menu>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.projectConfigure?after=additions">
+         <command
+               commandId="org.fredy.eclipsepluginexample.ui.commands.addSampleNatureCommand"
+               label="Add Sample Nature"
+               style="push">
+         </command>
+         <command
+               commandId="org.fredy.eclipsepluginexample.ui.commands.removeSampleNatureCommand"
+               label="Remove Sample Nature"
+               style="push">
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
@@ -222,6 +254,26 @@
             id="org.fredy.eclipsepluginexample.ui.editors.sampleEditor"
             name="Sample Editor">
       </editor>
+   </extension>
+   <extension
+         id="SampleBuilder"
+         name="Sample Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="org.fredy.eclipsepluginexample.builders.SampleBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="SampleNature"
+         name="Sample Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.fredy.eclipsepluginexample.builders.SampleNature">
+         </run>
+      </runtime>
    </extension>
 
 </plugin>

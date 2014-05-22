@@ -60,8 +60,8 @@ public class SampleHandler extends AbstractHandler {
                         Thread.sleep(1000);
                         monitor.worked(1000);
                     }
-                } catch (InterruptedException e) {}
-                finally {
+                } catch (InterruptedException e) {
+                } finally {
                     monitor.done();
                 }
                 
