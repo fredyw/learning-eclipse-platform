@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
@@ -35,9 +35,9 @@ public class SampleHandler extends AbstractHandler {
         final String message = preferences.get("message", "");
         
         ISelection selection = HandlerUtil.getCurrentSelection(event);
-        if (selection instanceof TreeSelection) {
-            TreeSelection treeSelection = (TreeSelection) selection;
-            IResource resource = (IResource) treeSelection.getFirstElement();
+        if (selection instanceof IStructuredSelection) {
+            IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+            IResource resource = (IResource) structuredSelection.getFirstElement();
             if (resource != null) {
                 System.out.println(resource.getLocation().toFile().getAbsolutePath());
             }
