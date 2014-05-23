@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.fredy.eclipsepluginexample.feature_1.0.0.201405222009.jar" id="org.fredy.eclipsepluginexample.feature" version="1.0.0.201405222009">
+      <category name="org.fredy.eclipsepluginexample.category"/>
+   </feature>
+   <category-def name="org.fredy.eclipsepluginexample.category" label="Eclipse Plugin Example Category"/>
+</site>
